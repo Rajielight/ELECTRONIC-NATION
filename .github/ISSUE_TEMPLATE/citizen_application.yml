@@ -1,0 +1,49 @@
+name: "Citizen Application"
+description: "Apply for citizenship (Alias or Real-name) with your PGP key."
+title: "Citizen Application: <your name>"
+labels: ["citizenship"]
+body:
+  - type: input
+    id: display
+    attributes:
+      label: Display Name (alias or real name)
+      placeholder: "alice / 山田太郎"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Alias
+        - Real-name
+    validations:
+      required: true
+  - type: input
+    id: fingerprint
+    attributes:
+      label: PGP Fingerprint (no spaces)
+      placeholder: "ABCD1234EF567890..."
+    validations:
+      required: true
+  - type: textarea
+    id: pgp
+    attributes:
+      label: PGP Public Key (ASCII-armored)
+      placeholder: "-----BEGIN PGP PUBLIC KEY BLOCK-----"
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact (optional)
+      placeholder: "email / Matrix / Telegram"
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Early-access fees & renewal
+      options:
+        - label: "I accept the early-access fees and renewal terms."
+          required: true

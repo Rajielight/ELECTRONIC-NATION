@@ -64,7 +64,7 @@
   }
 
   // ---- Manifesto PDF resolver ----
-  async function resolvePdf() {
+  async function resolvePdf_disabled() {
     const link = document.getElementById("pdfLink");
     const status = document.getElementById("pdfStatus");
     if (!link) return;
@@ -94,5 +94,5 @@
     link.style.pointerEvents = "none";
     status.textContent = "PDFが見つかりません。リポジトリの docs/assets/pdf/ に配置してください。";
   }
-  resolvePdf();
+  /* resolvePdf disabled */
 })();

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>電子国家 | パスキー登録</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif; margin: 24px; line-height: 1.6; }
+    .card { max-width: 560px; padding: 24px; border: 1px solid #ddd; border-radius: 12px; }
+    input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+    button { padding: 12px 16px; border: 0; border-radius: 8px; background: #222; color: #fff; font-size: 16px; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    .muted { color: #666; font-size: 14px; }
+    .ok { color: #0a7a0a; font-weight: 600; }
+    .err { color: #b00020; font-weight: 600; white-space: pre-wrap; }
+    .hint { background: #f7f7f7; border:1px solid #eee; padding: 12px; border-radius: 8px; font-size: 14px; }
+    .qr { margin-top: 12px; }
+  </style>
+  <script src="https://unpkg.com/@simplewebauthn/browser/dist/bundle/index.umd.min.js"></script>
+  <script src="https://unpkg.com/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <h1>電子国家 - かんたん登録（パスキー）</h1>
+  <div class="card">
+    <p>この端末に「市民キー」を作成します。パスワードや長い秘密鍵は不要です。</p>
+
+    <label for="nickname">ニックネーム（2〜32文字、後から変更可）</label>
+    <input id="nickname" type="text" minlength="2" maxlength="32" placeholder="例：Tasuku" />
+
+    <div style="height:8px"></div>
+    <button id="btn">登録する（この端末にパスキーを作成）</button>
+
+    <div id="msg" class="muted" style="margin-top:12px;"></div>
+    <div id="qrWrap" class="qr"></div>
+
+    <div style="margin-top:16px" class="hint">
+      <strong>大切なお知らせ：</strong> 登録後に表示される「リカバリー・キット」を保管してください（QRコード＋短いコード）。
+    </div>
+  </div>
+
+  <script>
+    const $ = (sel) => document.querySelector(sel);
+    const btn = $('#btn');
+    const msg = $('#msg');
+    const nicknameEl = $('#nickname');
+    const qrWrap = $('#qrWrap');
+
+    function setMsg(text, cls='muted') { msg.className = cls; msg.textContent = text; }
+    function download(filename, text) {
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = filename; a.click(); URL.revokeObjectURL(a.href);
+    }
+
+    async function register() {
+      try {
+        btn.disabled = true; setMsg('準備中…');
+        if (!window.PublicKeyCredential) { setMsg('このブラウザはWebAuthnに未対応です。最新のChrome/Safari/Edge/Firefoxをお試しください。','err'); return; }
+
+        const nickname = nicknameEl.value.trim();
+        if (nickname.length < 2) { setMsg('ニックネームは2文字以上で入力してください。','err'); return; }
+
+        const oRes = await fetch('/api/webauthn/generate-registration-options', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ nickname }),
+        });
+        if (!oRes.ok) { const e = await oRes.json().catch(()=>({})); throw new Error('サーバエラー: ' + (e.error || oRes.status)); }
+        const { user, options } = await oRes.json();
+
+        const attResp = await window.SimpleWebAuthnBrowser.startRegistration(options);
+
+        const vRes = await fetch('/api/webauthn/verify-registration', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ userId: user.id, attestationResponse: attResp }),
+        });
+        const vJson = await vRes.json();
+        if (!vRes.ok || !vJson.ok) { throw new Error('登録の検証に失敗しました。' + (vJson.error ? (' (' + vJson.error + ')') : '')); }
+
+        setMsg('登録が完了しました。リカバリー・キットを保存してください。', 'ok');
+
+        const recovery = {
+          version: 1, userId: user.id, nickname: user.nickname,
+          issuedAt: new Date().toISOString(),
+          note: 'このQRとコードは復旧に必要です。',
+          code: Math.random().toString(36).slice(2, 10).toUpperCase(),
+        };
+        const kitText = JSON.stringify(recovery, null, 2);
+
+        qrWrap.innerHTML = '';
+        const qrCanvas = document.createElement('canvas'); qrWrap.appendChild(qrCanvas);
+        if (window.QRCode) { window.QRCode.toCanvas(qrCanvas, kitText, { width: 220 }); }
+
+        const dlBtn = document.createElement('button');
+        dlBtn.textContent = 'リカバリー・キットを保存（TXT）';
+        dlBtn.onclick = () => download('recovery_kit_' + user.nickname + '.txt', kitText);
+        qrWrap.appendChild(document.createElement('div')).style.height = '8px';
+        qrWrap.appendChild(dlBtn);
+      } catch (err) {
+        console.error(err); setMsg(String(err.message || err), 'err');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    btn.addEventListener('click', register);
+  </script>
+</body>
+</html>

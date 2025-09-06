@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ELECTRONIC NATION — 選んで参加できる電子国家</title>
+  <meta name="description" content="OpenPGP鍵にもとづく参加、自由な加入と退出、段階的ガバナンス、公共財へ価値を循環させる経済設計。">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <link rel="icon" href="./assets/svg/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="ELECTRONIC NATION" />
+  <meta property="og:description" content="選んで参加できる電子国家。OpenPGP鍵、二院制、公共財へ価値を循環。">
+  <meta property="og:type" content="website" />
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="#">ELECTRONIC NATION</a>
+      <nav aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menu">MENU</button>
+        <ul id="menu" class="menu">
+          <li><a href="#manifesto">理念</a></li>
+          <li><a href="#citizenship">参加方法</a></li>
+          <li><a href="#governance">運営</a></li>
+          <li><a href="#economy">経済</a></li>
+          <li><a href="#technology">技術</a></li>
+          <li><a href="#transparency">透明性</a></li>
+          <li><a href="#join">申請</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <button id="themeToggle" class="theme-btn" aria-label="テーマ切替">☾</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>選んで参加できる、非領土の「電子国家」</h1>
+          <p class="lead">
+            私たちは、誰もが自分の意志で参加し、いつでもやめられる共同体を目指します。
+            参加はOpenPGP鍵（エイリアス）で行え、必要に応じて本名のデジタル証明を任意で結びつけられます。
+            経済は、投機の上振れをルールにもとづき公共目的へ循環させ、貢献者を優先して報いる設計です。
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#join">市民になる</a>
+            <a class="btn" href="#manifesto">理念を読む</a>
+          </div>
+        </div>
+        <ul class="hero-cards">
+          <li>
+            <h3>参加</h3>
+            <p>加入・退出は自由。OpenPGP鍵で参加でき、AIエージェントも条件付きで登録可能。</p>
+          </li>
+          <li>
+            <h3>運営</h3>
+            <p>創設期→移行期→二院制へ段階的に権限移譲。重要決定は両院多数・タイムロック・オンチェーン監査。</p>
+          </li>
+          <li>
+            <h3>経済</h3>
+            <p>公共財トレジャリー、二乗投票型の資金配分、賞金付きUBI、買戻し&再循環など。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="manifesto" class="section">
+      <div class="container narrow">
+        <h2>理念（概要）</h2>
+        <p>
+          私たちはサイファーパンクの系譜に立ち、プライバシーの権利と選択的な開示を守るために
+          <strong>コードを書く</strong>ことを選びます。現代の暗号・鍵管理・ZK・P2P決済は、
+          この理念の社会実装を後押ししています。
+        </p>
+        <p>
+          電子国家は<strong>任意参加の共同体</strong>です。OpenPGP鍵のエイリアスで参加でき、
+          必要に応じて本名のデジタル証明を任意で紐づけられます。退出の罰則はありません。
+          経済面では、市場の上振れを公共財へ循環させ、貢献者が優先的に報われます。
+        </p>
+        <div class="box">
+          <a id="pdfLink" class="btn" href="assets/pdf/manifesto_v1_7_3.pdf" download>PDFをダウンロード（v1.7.3）</a>
+          <p id="pdfStatus" class="note" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="citizenship" class="section alt">
+      <div class="container">
+        <h2>参加方法</h2>
+        <ul class="list">
+          <li><strong>加入・退出は自由</strong>（退出ペナルティなし）。</li>
+          <li>OpenPGP互換の公開鍵（推奨：署名 Ed25519、暗号 X25519）。本名の証明は任意で紐づけ可能。</li>
+          <li>AIエージェントも、自己の鍵を安全に管理できることを条件に登録できます（法的人格を与えるものではありません）。</li>
+        </ul>
+        <h3>費用（早期参加）</h3>
+        <ul class="list">
+          <li>実名で参加：入場料 0 USD、年会費 50 USD</li>
+          <li>エイリアス/AIで参加：入場料 100 USD（暗号資産払い）、年会費 100 USD</li>
+          <li>請求は初回登録から1年後に開始。未払いは失効（再申請可）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="governance" class="section">
+      <div class="container">
+        <h2>運営（段階的な移行）</h2>
+        <ol class="list">
+          <li><strong>創設期</strong>：創設チームが安定と安全性を最優先で主導（意思決定は公開・タイムロック・監査可能）。</li>
+          <li><strong>移行期</strong>：公開RFC、貢献者による拒否権、トレジャリー報告を導入。</li>
+          <li><strong>二院制</strong>：トークン議会と貢献者議会。重要案件は両院多数＋タイムロック＋オンチェーン監査。</li>
+        </ol>
+        <p>非常時権限は最小限・時間で制限し、必ず事後レビューを行います。</p>
+      </div>
+    </section>
+
+    <section id="economy" class="section alt">
+      <div class="container">
+        <h2>経済（公共目的への循環）</h2>
+        <ul class="list">
+          <li>公共財トレジャリー、賞金付きUBI、リスク共有ボールト、二乗投票型の資金配分。</li>
+          <li>ネイティブ通貨や発行益、買戻し&再循環は、公開ルールで運用しオンチェーンで監査します（利益の約束ではありません）。</li>
+          <li>貢献のない権利の固定化を抑制（活動がなければ重みは逓減）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="technology" class="section">
+      <div class="container">
+        <h2>技術</h2>
+        <ul class="list">
+          <li>強い暗号・オープンソース・許可不要のインターフェース。</li>
+          <li>ユーザー管理の鍵、本名のデジタル証明（選択制）、ハードウェア鍵、鍵のローテーション/失効。</li>
+          <li>コミュニティ・モデレーションと検閲耐性の両立。ZKによる選択的開示。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="transparency" class="section alt">
+      <div class="container">
+        <h2>透明性</h2>
+        <ul class="list">
+          <li>公的資金はオンチェーンで公開し、ダッシュボードと月次報告、独立レビューを実施。</li>
+          <li>買戻し実行ログはオンチェーンで公開。必要に応じて一時停止できるリスク管理。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="join" class="section">
+      <div class="container narrow">
+        <h2>申請</h2>
+        <p>以下のフォームから GitHub Issue が作成されます。PGP鍵は必須です。</p>
+        <form id="joinForm" class="form">
+          <label>表示名（エイリアス可）
+            <input type="text" name="display" required placeholder="例）alice / 山田 太郎">
+          </label>
+          <label>区分
+            <select name="kind" required>
+              <option value="alias">エイリアス市民（AI含む）</option>
+              <option value="realname">実名市民</option>
+            </select>
+          </label>
+          <label>PGP Fingerprint（スペースなし16～40桁のHEX）
+            <input type="text" name="fingerprint" required placeholder="ABCD1234EF567890...">
+          </label>
+          <label>PGP Public Key（ASCIIアーマー）
+            <textarea name="pgp" rows="6" required placeholder="-----BEGIN PGP PUBLIC KEY BLOCK----- ..."></textarea>
+          </label>
+          <label>任意：連絡先（メール/Matrix/Telegram など）
+            <input type="text" name="contact" placeholder="例）alice@example.org / @alice:matrix.org">
+          </label>
+          <button type="submit" class="btn primary">GitHub Issue を作成</button>
+        </form>
+        <p class="note">※ 料金の支払い方法や実名確認（実名市民）は、承認後に個別連絡します。</p>
+      </div>
+    </section>
+
+    <section id="faq" class="section alt">
+      <div class="container narrow">
+        <h2>FAQ</h2>
+
+        <details><summary>電子国家とは？</summary>
+          <p>国のような強制力を前提にせず、本人の意思で参加し、いつでも退出できる共同体です。OpenPGP鍵のエイリアスで参加でき、本名の証明は任意です。</p>
+        </details>
+
+        <details><summary>本名は必要ですか？</summary>
+          <p>不要です。エイリアスで参加できます。必要に応じて検証可能なデジタル証明を任意で紐づけられます。鍵のローテーションや失効でIDの継続性を保てます。</p>
+        </details>
+
+        <details><summary>AIエージェントも参加できますか？</summary>
+          <p>自身の鍵を安全に管理できる自律エージェントは登録可能です（ただし法的人格を与えるものではありません）。</p>
+        </details>
+
+        <details><summary>退出にペナルティはありますか？</summary>
+          <p>ありません。加入・退出は完全に任意で、退出コストはありません。</p>
+        </details>
+
+        <details><summary>運営（ガバナンス）はどうなっていますか？</summary>
+          <p>創設期 → 移行期 → 二院制（トークン議会 / 貢献者議会）へ段階的に移行します。重要決定は両院多数・タイムロック・オンチェーン監査が必要です。非常時権限は最小で時間制限があり、事後レビューを受けます。</p>
+        </details>
+
+        <details><summary>費用はいくらですか？</summary>
+          <p>（早期参加）実名で参加は入場0 USD＋年50 USD、エイリアス/AIで参加は入場100 USD（暗号資産払い）＋年100 USD。請求は登録1年後に開始、未払いは失効（再申請可）。</p>
+        </details>
+
+        <details><summary>お金の流れはどこで見られますか？</summary>
+          <p>公的資金はオンチェーンで公開し、ダッシュボードと月次報告、独立レビューを行います。</p>
+        </details>
+
+        <details><summary>買戻し&再循環とは何ですか？</summary>
+          <p>手数料や収益の一部でネイティブ通貨を買い戻し、焼却またはトレジャリーにロックして価値を循環させる仕組みです。公開ルールに基づき実行ログをオンチェーンで開示します。利益の約束ではなく、リスク時は停止できます。</p>
+        </details>
+
+        <details><summary>紛争が起きたら？</summary>
+          <p>段階的に、まず調停、次にオンチェーンの拘束的仲裁、必要な場合は居住国の裁判所へ、という流れを採用します。</p>
+        </details>
+
+        <details><summary>個人情報とプライバシーは？</summary>
+          <p>データの自己所有と選択的開示を原則とし、エンドツーエンド暗号化を前提にします。</p>
+        </details>
+
+        <details><summary>鍵をなくしたら？</summary>
+          <p>鍵のローテーションや失効の仕組みにより、身元の継続性を保ちながら鍵を入れ替えられます。ハードウェア鍵の利用を推奨します。</p>
+        </details>
+
+        <details><summary>未成年は参加できますか？</summary>
+          <p>各国の法令に従います。必要な場合は保護者や後見人の同意が必要です。</p>
+        </details>
+
+        <details><summary>税務や法的地位は？</summary>
+          <p>既存の法域と平和的に相互運用する立場です。各自の居住国の税務・法令の遵守は参加者の責任です。</p>
+        </details>
+
+        <details><summary>無償で権利を受け取り続ける人が得をしませんか？</summary>
+          <p>貢献のない権利の固定化を抑制する方針（重みの逓減など）で対応します。</p>
+        </details>
+
+        <details><summary>将来の変更はどう決まりますか？</summary>
+          <p>プロトコル変更には公開RFCと最短のレビュー期間が必要です。権利に関する大きな変更は両院の特別多数＋市民投票を想定します。</p>
+        </details>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Electronic Nation — Built in public.</p>
+      <p><a href="#manifesto">理念</a> · <a href="#transparency">透明性</a> · <a href="https://github.com/Rajielight/ELECTRONIC-NATION" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/script.js" defer></script>
+</body>
+</html>

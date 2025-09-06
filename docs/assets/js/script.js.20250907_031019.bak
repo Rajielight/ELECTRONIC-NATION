@@ -58,7 +58,7 @@
 
       const body = encodeURIComponent(lines.join("\\n"));
       const title = encodeURIComponent(\`Citizen Application: \${display}\`);
-      const url = \`/register
+      const url = \`https://github.com/Rajielight/ELECTRONIC-NATION/issues/new?title=\${title}&body=\${body}\`;
       window.open(url, "_blank", "noopener");
     });
   }
